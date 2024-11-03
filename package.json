@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@mantine/hooks": "^7.13.4",
     "@number-flow/react": "^0.2.6",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.10",

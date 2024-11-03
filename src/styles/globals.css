@@ -31,11 +31,11 @@
 
 /* ::-webkit-scrollbar-thumb */
 ::-webkit-scrollbar-thumb {
-	@apply rounded-2xl bg-lowlight-500 dark:bg-highlight-400 border-[5px] border-solid border-transparent bg-clip-padding cursor-pointer;
+	@apply rounded-2xl bg-lowlight-500 dark:bg-highlight-100 border-[5px] border-solid border-transparent bg-clip-padding cursor-pointer;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	@apply bg-lowlight-600 dark:bg-highlight-500;
+	@apply bg-lowlight-600 dark:bg-highlight-300;
 }
 
 /* General Styles */
@@ -103,7 +103,7 @@ img::before {
 
 /* .hr */
 .hr {
-	@apply border-b border-solid border-lowlight-300;
+	@apply border-b border-solid border-lowlight-300 dark:border-highlight-300;
 }
 
 /* .input */
