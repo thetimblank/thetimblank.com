@@ -3,14 +3,6 @@
 @tailwind utilities;
 
 :root {
-	--link: #539bf5;
-
-	--focus: 4px solid var(--link);
-
-	--accent: #6594ce;
-	--accent-dark: color-mix(in srgb, var(--accent) 75%, #000);
-	--accent-opacity: color-mix(in srgb, var(--accent) var(--amount, 50%), transparent);
-
 	color-scheme: light dark;
 	font-size: 16px;
 	line-height: 1;
@@ -25,331 +17,185 @@
 	scroll-padding: 0;
 }
 
+/* Custom Scrollbar Styling */
+
+/* ::-webkit-scrollbar */
 ::-webkit-scrollbar {
 	width: 20px;
 }
 
+/* ::-webkit-scrollbar-track */
 ::-webkit-scrollbar-track {
-	background-color: transparent;
+	@apply bg-transparent;
 }
 
+/* ::-webkit-scrollbar-thumb */
 ::-webkit-scrollbar-thumb {
-	border: 5px solid var(--bg-normal);
-	background-color: var(--highlight-low);
-	@apply rounded-2xl;
+	@apply rounded-2xl bg-lowlight-500 dark:bg-highlight-400 border-[5px] border-solid border-transparent bg-clip-padding cursor-pointer;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: var(--highlight-high);
+	@apply bg-lowlight-600 dark:bg-highlight-500;
 }
 
-/* regular */
+/* General Styles */
 
-* {
-	position: relative;
-	margin: 0;
-	padding: 0;
-	user-select: none;
-	box-sizing: border-box;
+/* * (global) */
+*:not(number-flow *) {
+	@apply relative m-0 p-0 box-border;
 }
 
 *:focus {
-	border: none;
-	outline: none;
+	@apply border-none outline-none;
 }
 
+/* html and body */
 html,
 body {
-	height: 100%;
-	width: 100%;
+	@apply size-full scroll-smooth;
 }
 
 body {
-	color: var(--text-normal);
-	fill: var(--text-normal);
-
-	background-color: var(--bg-normal);
-
-	@apply transition-all;
-	scroll-behavior: smooth;
-
-	overflow-x: hidden;
-	overflow-y: scroll;
+	@apply text-dark-700 fill-dark-700 dark:text-light-500 dark:fill-light-500 bg-light-500 dark:bg-dark-500 overflow-x-hidden overflow-y-auto;
 }
 
-body.locked {
-	overflow-y: hidden;
-}
-
-body:has(.locked)::after {
+body.scroll-locked {
 	width: calc(100% - 20px);
-
-	overflow-y: hidden;
-}
-
-.dark {
-	--bg-low: #212121;
-	--bg-normal: #111111;
-	--bg-high: #000000;
-
-	--text-low: #999999;
-	--text-normal: #f2f2f3;
-	--text-high: #fff;
-
-	--shadow: rgba(50, 50, 93, 0.1) 0px 13px 27px -5px, rgba(0, 0, 0, 0.1) 0px 8px 16px -8px;
-
-	--highlight-low: #ffffff33;
-	--highlight-high: #ffffff55;
-
-	--muted: color-mix(in srgb, var(--color, #fff) 10%, transparent);
-	--disabled: color-mix(in srgb, var(--color, #fff) 5%, transparent);
-}
-
-.light {
-	--bg-low: #f1f1f1;
-	--bg-normal: #fff;
-	--bg-high: #f2f2f3;
-
-	--text-low: #212121;
-	--text-normal: #111111;
-	--text-high: #000000;
-
-	--shadow: rgba(50, 50, 93, 0.1) 0px 13px 27px -5px, rgba(0, 0, 0, 0.1) 0px 8px 16px -8px;
-
-	--highlight-low: #00000033;
-	--highlight-high: #00000055;
-
-	--muted: color-mix(in srgb, var(--color, #000) 50%, transparent);
-	--disabled: color-mix(in srgb, var(--color, #000) 10%, transparent);
+	@apply overflow-y-hidden;
 }
 
 /* reset */
 
 a {
-	display: inline-flex;
-	color: inherit;
-	text-decoration: none;
+	@apply inline-flex text-inherit no-underline;
 }
 
 hr {
-	border: none;
+	@apply border-none;
 }
 
 code {
-	color: inherit;
-	user-select: text;
-}
-
-p {
-	line-height: 1.25;
-}
-
-code {
-	font-family: var(--font-mono);
+	@apply font-mono;
 }
 
 button {
-	background-color: transparent;
-	outline: none;
-	border: none;
-	font-family: inherit;
-	font-size: inherit;
-	color: inherit;
+	@apply bg-transparent font-body text-inherit;
 }
 
-img:before {
+svg {
+	@apply fill-inherit;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+	appearance: none;
+}
+
+/* default img alt */
+img::before {
 	content: '';
-
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: calc(100% - 2px);
-	width: 100%;
-	background-color: var(--bg-low);
-	border: 2px dashed var(--highlight-low);
+	@apply absolute top-0 left-0 h-[calc(100%-2px)] w-full bg-dark-100 border-2 border-dashed border-highlight-100;
 }
 
-/* img:before {
-	content: ' ';
-	display: block;
-
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: calc(100% - 2px);
-	width: 100%;
-	background-color: rgb(230, 230, 230);
-	border: 2px dotted rgb(200, 200, 200);
-	border-radius: 5px;
-} */
-
-/* usual classes */
-
+/* .center */
 .center {
-	display: grid;
-	place-items: center;
+	@apply flex items-center justify-center;
 }
 
+/* .hr */
 .hr {
-	border: 1px solid var(--highlight-low);
+	@apply border-b border-solid border-lowlight-300;
 }
 
+/* .input */
 .input {
-	padding: 20px;
-
-	height: auto;
-	width: 100%;
-
-	resize: none;
-
-	background-color: transparent;
-	border: 2px solid var(--highlight-low);
-	@apply rounded-xl;
-
-	color: var(--text-normal);
-	font-size: 1.25em;
-
-	@apply transition-all;
+	@apply px-4 py-3 w-full resize-none bg-transparent border-2 border-lowlight-300 dark:border-highlight-300 border-solid  rounded-xl transition-all text-inherit
+	 text-xl;
 }
 
 .input::placeholder {
-	color: var(--highlight-high);
+	@apply text-light-100;
 }
 
-.input:focus {
-	border: 2px solid var(--link);
-}
+/* .input:invalid {
+	@apply border-red-400;
+} */
 
-/* buttons */
-
+/* .button */
 .button {
-	position: relative;
-
-	display: flex;
-	align-items: center;
-	gap: 10px;
-
-	background-color: var(--color, var(--highlight-low));
-	border: 3px solid transparent;
-	outline: 3px solid transparent;
-	background-clip: padding-box;
-
-	margin: 2px;
-	padding: 10px 20px;
-
-	font-weight: bold;
-
-	cursor: pointer;
-
-	@apply rounded-xl;
-	@apply transition-all;
+	@apply relative flex items-center justify-center gap-2 text-light-900 fill-light-900 dark:text-dark-800 dark:fill-dark-800 font-title bg-dark-600 dark:bg-light-500 px-5 py-3 font-bold cursor-pointer rounded-xl transition-all;
 }
-
-.button:hover {
-	background-color: var(--color, var(--highlight-high));
-	outline: 3px solid var(--color, var(--highlight-high));
-}
-
+.button:hover,
 .button:focus-visible {
-	background-color: var(--color, var(--highlight-high));
-	outline: 3px solid var(--link);
+	@apply bg-dark-400 dark:bg-light-200;
 }
 
-.button:active {
-	animation: pulse var(--transition) forwards;
+.button:disabled {
+	@apply opacity-50 bg-dark-600 dark:bg-light-100 cursor-not-allowed;
 }
 
-@keyframes pulse {
-	from {
-		transform: scale(0.95);
-	}
-
-	to {
-		transform: scale(1);
-	}
+.button:not(:disabled):active {
+	@apply animate-button-click;
 }
 
+/* .link */
 .link {
-	cursor: pointer;
+	@apply cursor-pointer inline-flex gap-1 items-center text-link;
+}
 
-	display: inline-flex;
-	gap: 5px;
-	align-items: center;
-
-	color: var(--link);
-	fill: var(--link);
+.link svg {
+	@apply fill-link;
 }
 
 .link:hover,
 .link:focus-visible {
-	text-decoration: underline;
+	@apply underline;
 }
+
+.link:disabled {
+	@apply opacity-50  cursor-not-allowed !no-underline;
+}
+
+/* .icon */
 .icon {
-	@apply transition-all;
-	border-radius: 50%;
-	display: inline-flex;
-	padding: 10px;
-	cursor: pointer;
-	backdrop-filter: blur(20px);
-	background-color: var(--highlight-low);
+	@apply transition-all rounded-full inline-flex p-2 cursor-pointer backdrop-blur-2xl bg-lowlight-200 dark:bg-highlight-300;
 }
 
-.icon:hover,
-.icon:focus-visible {
-	background-color: var(--highlight-high);
+.icon:hover:not(.disabled),
+.icon:focus-visible:not(.disabled) {
+	@apply bg-lowlight-300 dark:bg-highlight-400;
 }
 
-.icon:focus-visible {
-	outline: var(--focus);
+/* .disabled */
+.disabled {
+	@apply opacity-50 !important;
 }
 
 .disabled {
-	color: var(--disabled) !important;
-	fill: var(--disabled) !important;
 	cursor: not-allowed !important;
 }
 
-/* text */
-
-.tooltip {
-	z-index: 100;
-	font-weight: bold;
-	font-size: 1.2em;
-
-	@apply rounded-xl;
-
-	pointer-events: none;
-
-	width: auto;
-
-	display: grid;
-	place-items: center;
-
-	position: absolute;
-	left: 0;
-	bottom: 100%;
-
-	padding: 10px 15px;
-	white-space: nowrap;
-
-	background-color: var(--text-normal);
-	color: var(--bg-normal);
+.disabled:active {
+	pointer-events: none !important;
 }
 
-@media only screen and (max-width: 700px) {
-	h1 {
-		font-size: 2em;
-	}
+/* .focusable */
+
+.focusable,
+.button,
+.input,
+.icon {
+	@apply outline-4 outline-transparent outline-offset-2;
 }
 
-@keyframes bg_gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
+.focusable:focus-visible,
+.button:focus-visible,
+.input:focus-visible,
+.icon:focus-visible {
+	@apply outline-focus;
+}
+
+@layer base {
+	:root {
+		--radius: 0.5rem;
 	}
 }

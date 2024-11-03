@@ -1,17 +1,26 @@
+import React from 'react';
 import Link from 'next/link';
 
-export default function NotFound() {
+const NotFound: React.FC = () => {
 	return (
-		<div className='h-full w-full grid place-items-center'>
-			<h1 className='text-[40vw] leading-[50vh] absolute opacity-10 z-10 font-black select-none'>404</h1>
-			<div className='flex items-center flex-col gap-5 z-20'>
-				<h2 className='text-2xl max-w-[60%] md:max-w-[60%] text-center'>
-					We couldn&apos;t find the page you&apos;re looking for.
-				</h2>
-				<Link aria-label='Go to home' className='link' href='/'>
-					Return Home
+		<div className='size-full center overflow-hidden'>
+			<p className='absolute font-black text-highlight-100 text-[42vw]'>404</p>
+			<div className='text-2xl flex flex-col gap-3 text-center center'>
+				<p>We could not find the page you are looking for.</p>
+				<Link href='/' title='Home' className='link'>
+					Home
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						height='24px'
+						viewBox='0 -960 960 960'
+						width='24px'
+						className='size-6'>
+						<path d='M592-417H189q-26 0-44.5-18.5T126-480q0-26 18.5-44.5T189-543h403L435-700q-19-19-19-45t19-45q19-18 45-18t45 19l264 264q9 9 14 21t5 24q0 12-5 24t-14 21L524-170q-19 19-44.5 19T435-170q-19-19-19-45t19-45l157-157Z' />
+					</svg>
 				</Link>
 			</div>
 		</div>
 	);
-}
+};
+
+export default NotFound;

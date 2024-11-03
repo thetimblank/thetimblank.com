@@ -3,20 +3,21 @@ import localFont from 'next/font/local';
 export const font_body = localFont({
 	src: [
 		{
-			path: '../../public/fonts/Satoshi-VariableItalic.ttf',
+			path: '../../public/fonts/Supreme-VariableItalic.ttf',
 		},
 		{
-			path: '../../public/fonts/Satoshi-Variable.ttf',
+			path: '../../public/fonts/Supreme-Variable.ttf',
 		},
 	],
 	variable: '--font-body',
 });
 
-export const font_special = localFont({
+export const font_title = localFont({
 	src: [
 		{
-			path: '../../public/fonts/Rosaline-Regular.otf',
+			path: '../../public/fonts/Manrope-Variable.ttf',
 		},
 	],
-	variable: '--font-special',
+
+	variable: '--font-title',
 });

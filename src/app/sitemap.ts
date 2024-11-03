@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		{
 			url: 'https://thetimblank.com',
 			lastModified: new Date(),
-			changeFrequency: 'monthly',
+			changeFrequency: 'daily',
 			priority: 1,
 		},
 	];
