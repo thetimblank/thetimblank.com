@@ -33,6 +33,12 @@ const projects: Item[] = [
 		featured: true,
 	},
 	{
+		name: 'Idea Cooker',
+		image: '/media/projects/ideacooker.png',
+		link: 'https://costellar.neotap.net',
+		roles: ['Personal Project'],
+	},
+	{
 		name: 'Nodur',
 		image: '/media/projects/nodur.png',
 		link: 'https://nodur.vercel.app',
@@ -67,7 +73,7 @@ const projects: Item[] = [
 const Page: React.FC = () => {
 	return (
 		<>
-			<div className='min-h-[80dvh] center flex-col space-x-4'>
+			<div className='min-h-[80vh] center flex-col space-x-4'>
 				<m.div
 					initial={{
 						opacity: 0,
@@ -84,6 +90,7 @@ const Page: React.FC = () => {
 					<h1 className='text-[10rem] font-black uppercase mb-10 sm:mb-20'>Hey, I'm Tim</h1>
 				</m.div>
 				<m.div
+					layout
 					initial={{
 						opacity: 0,
 						y: 100,
@@ -96,35 +103,27 @@ const Page: React.FC = () => {
 						rotateX: 0,
 					}}
 					transition={{ duration: 1, delay: 0.1, type: 'spring', bounce: 0.25 }}
-					className='min-h-[50dvh]'>
+					className='min-h-[30vh]'>
 					<Carousel
 						className='size-full'
-						slides={[
-							...[
-								projects
-									.filter((i) => !!i.image)
-									.map((slide, i) => {
-										console.log(projects);
-
-										return (
-											<div
-												key={i}
-												className='rounded-xl sm:rounded-3xl overflow-hidden bg-highlight-100 hover:scale-105 transition-transform cursor-pointer'>
-												<Image
-													src={slide.image ?? ''}
-													alt=''
-													width={0}
-													height={0}
-													sizes='100vw'
-													draggable={false}
-													className='w-[500] h-auto size-full object-cover select-none'
-												/>
-												<p className='p-5'>{slide.name}</p>
-											</div>
-										);
-									}),
-							],
-						]}
+						slides={projects
+							.filter((i) => !!i.image)
+							.map((slide, i) => (
+								<div
+									key={i}
+									className='rounded-xl sm:rounded-3xl overflow-hidden bg-highlight-100 hover:scale-105 transition-transform cursor-pointer'>
+									<Image
+										src={slide.image ?? ''}
+										alt=''
+										width={0}
+										height={0}
+										sizes='100vw'
+										draggable={false}
+										className='w-[500] h-auto size-full object-cover select-none'
+									/>
+									<p className='p-5'>{slide.name}</p>
+								</div>
+							))}
 					/>
 				</m.div>
 			</div>
@@ -159,8 +158,8 @@ const Page: React.FC = () => {
 					If you think you could help, let me know at my{' '}
 					<Link
 						href='mailto:neo@neotap.net'
-						className='inline-flex gap-2 fill-link text-link hover:bg-highlight-100 rounded-xl transition-colors px-1'>
-						<HiMail className='size-8' />
+						className='inline-flex items-center gap-1 align-bottom sm:gap-2 fill-link text-link hover:bg-highlight-100 rounded-xl transition-colors px-1'>
+						<HiMail className='size-4 sm:size-8 align-middle' />
 						<p>email</p>
 					</Link>
 					.
