@@ -6,7 +6,63 @@ import Carousel from './Carousel';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiMail } from 'react-icons/hi';
-import Section from './Section';
+import Section, { Item } from './Section';
+
+const projects: Item[] = [
+	{
+		name: 'Vase Oasis',
+		image: '/media/projects/vaseoasis.png',
+		roles: ['Lead Web & App Developer', 'Engineer'],
+		link: 'https://vaseoasis.com',
+		dates: {
+			start: new Date(2024, 1),
+			end: 'Present',
+		},
+		featured: true,
+	},
+	{
+		name: 'Costellar',
+		roles: ['Personal Project'],
+		image: '/media/projects/costellar.png',
+		link: 'https://costellar.neotap.net',
+		dates: {
+			start: new Date(2024, 5),
+			end: new Date(2024, 6),
+		},
+		github: 'https://github.com/neo-zip/costellar',
+		featured: true,
+	},
+	{
+		name: 'Nodur',
+		image: '/media/projects/nodur.png',
+		link: 'https://nodur.vercel.app',
+		roles: ['Web Developer', 'Full Stack'],
+		dates: {
+			start: new Date(2024, 5, 14),
+			end: 'Present',
+		},
+	},
+	{
+		name: 'Bloodline Interactive',
+		roles: ['Lead Web Developer', 'Engine Developer'],
+		image: '/media/projects/bloodline.png',
+		link: 'https://bloodline.neotap.net',
+		dates: {
+			start: new Date(2023, 7),
+			end: 'Present',
+		},
+	},
+	{
+		name: "How's your day?",
+		image: '/media/projects/howwasyourday.png',
+		roles: ['Personal Project'],
+		link: 'https://howsyourday.neotap.net',
+		github: 'https://github.com/neo-zip/howwasmyday',
+		dates: {
+			start: new Date(2023, 7),
+		},
+	},
+];
 
 const Page: React.FC = () => {
 	return (
@@ -40,29 +96,34 @@ const Page: React.FC = () => {
 						rotateX: 0,
 					}}
 					transition={{ duration: 1, delay: 0.1, type: 'spring', bounce: 0.25 }}
-					className='min-h-[20dvh]'>
+					className='min-h-[50dvh]'>
 					<Carousel
 						className='size-full'
 						slides={[
-							...['/media/moon.jpeg', '/media/moon2.jpg', '/media/saul.png'].map((image) => (
-								<Image
-									src={image}
-									alt=''
-									width={0}
-									height={0}
-									sizes='100vw'
-									draggable={false}
-									className='w-[500] h-auto size-full object-cover rounded-xl sm:rounded-3xl select-none'
-								/>
-							)),
-							<video
-								className='w-[500] h-auto size-full rounded-xl sm:rounded-3xl'
-								playsInline
-								autoPlay
-								muted
-								loop
-								src='/media/blackhole.mp4'
-							/>,
+							...[
+								projects
+									.filter((i) => !!i.image)
+									.map((slide, i) => {
+										console.log(projects);
+
+										return (
+											<div
+												key={i}
+												className='rounded-xl sm:rounded-3xl overflow-hidden bg-highlight-100 hover:scale-105 transition-transform cursor-pointer'>
+												<Image
+													src={slide.image ?? ''}
+													alt=''
+													width={0}
+													height={0}
+													sizes='100vw'
+													draggable={false}
+													className='w-[500] h-auto size-full object-cover select-none'
+												/>
+												<p className='p-5'>{slide.name}</p>
+											</div>
+										);
+									}),
+							],
 						]}
 					/>
 				</m.div>
@@ -105,59 +166,7 @@ const Page: React.FC = () => {
 					.
 				</m.div>
 
-				<Section
-					title="Where I've been"
-					data={[
-						{
-							name: 'Vase Oasis',
-							roles: ['Lead Web & App Developer', 'Engineer'],
-							link: 'https://vaseoasis.com',
-							dates: {
-								start: new Date(2024, 1),
-								end: 'Present',
-							},
-							featured: true,
-						},
-						{
-							name: 'Costellar',
-							roles: ['Personal Project'],
-							link: 'https://costellar.neotap.net',
-							dates: {
-								start: new Date(2024, 5),
-								end: new Date(2024, 6),
-							},
-							github: 'https://github.com/neo-zip/costellar',
-							featured: true,
-						},
-						{
-							name: 'Nodur',
-							link: 'https://nodur.vercel.app',
-							roles: ['Web Developer', 'Full Stack'],
-							dates: {
-								start: new Date(2024, 5, 14),
-								end: 'Present',
-							},
-						},
-						{
-							name: 'Bloodline Interactive',
-							roles: ['Lead Web Developer', 'Engine Developer'],
-							link: 'https://bloodline.neotap.net',
-							dates: {
-								start: new Date(2023, 7),
-								end: 'Present',
-							},
-						},
-						{
-							name: "How's your day?",
-							roles: ['Personal Project'],
-							link: 'https://howsyourday.neotap.net',
-							github: 'https://github.com/neo-zip/howwasmyday',
-							dates: {
-								start: new Date(2023, 7),
-							},
-						},
-					]}
-				/>
+				<Section title="Where I've been" data={projects} />
 				<div className='flex w-full items-center flex-col'>
 					<Link
 						href='/clicker'

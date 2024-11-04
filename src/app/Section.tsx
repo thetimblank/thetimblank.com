@@ -10,6 +10,7 @@ type Dates = {
 
 export interface Item {
 	name: string;
+	image?: string;
 	description?: string;
 	roles?: string[];
 	link?: string;
