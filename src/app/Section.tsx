@@ -2,8 +2,8 @@ import React from 'react';
 import { m } from 'framer-motion';
 import Link from 'next/link';
 import Tooltip from '@/components/Tooltip';
-import { HiClock, HiStar } from 'react-icons/hi';
-import { FaGit, FaGithub } from 'react-icons/fa';
+import { HiClock, HiExternalLink, HiStar } from 'react-icons/hi';
+import { FaExternalLinkAlt, FaExternalLinkSquareAlt, FaGithub } from 'react-icons/fa';
 import { MdOpenInNew } from 'react-icons/md';
 
 type Dates = {
@@ -82,23 +82,23 @@ const Section: React.FC<P> = ({ title, data }) => {
 			<div className='w-[95%] sm:w-3/4 xl:w-1/2'>
 				{data.map((item, i) => {
 					return (
-						<div className='flex flex-col w-full mb-40 gap-2 relative' key={i}>
-							{item.featured && (
-								<m.div
-									initial={{ opacity: 0, x: 150, rotate: 120 }}
-									whileInView={{ opacity: 1, x: 0, rotate: 10 }}
-									transition={{ duration: 2, type: 'spring' }}>
-									<HiStar className='fill-yellow-600' />
-								</m.div>
-							)}
-							<div className='flex gap-1 items-center'>
+						<div className='flex flex-col mb-40 gap-2 relative' key={i}>
+							<div className='flex gap-2 items-center'>
+								{item.featured && (
+									<m.div
+										initial={{ opacity: 0, x: -50, rotate: -60 }}
+										whileInView={{ opacity: 1, x: 0, rotate: 10 }}
+										transition={{ duration: 1.5, type: 'spring', bounce: 0 }}>
+										<HiStar className='fill-yellow-600 size-10' />
+									</m.div>
+								)}
 								{item.link ? (
 									<Link
 										href={item.link}
 										target='_blank'
-										className='flex items-center gap-5 hover:text-blue-500'>
-										<h3 className='leading-10 text-2xl'>{item.name}</h3>
-										<MdOpenInNew className='size-10' />
+										className='flex items-center gap-2 hover:text-link hover:fill-link transition-all'>
+										<h3 className='text-4xl font-black font-title flex'>{item.name}</h3>
+										<HiExternalLink className='size-10' />
 									</Link>
 								) : (
 									<h3 className='leading-10 text-2xl'>{item.name}</h3>
@@ -106,20 +106,20 @@ const Section: React.FC<P> = ({ title, data }) => {
 								{item.dates && (item.dates.start || item.dates.end) && (
 									<Tooltip content={<ParsedDates start={item.dates.start} end={item.dates.end} />}>
 										<div className={`${item.link ? 'hover:text-blue-500' : ''}`}>
-											<HiClock className='size-10' />
+											<HiClock className='hover:fill-link transition-all size-10 cursor-pointer' />
 										</div>
 									</Tooltip>
 								)}
 								{item.github && (
-									<Tooltip content='Github Repository'>
-										<Link href={item.github} target='_blank'>
-											<FaGithub className='hover:fill-link transition-all size-10' />
+									<Tooltip content='Github Repository' className='flex'>
+										<Link href={item.github} target='_blank' className='inline-flex'>
+											<FaGithub className='hover:fill-link transition-all size-[35]' />
 										</Link>
 									</Tooltip>
 								)}
 							</div>
 							{item.roles && item.roles.length > 0 && (
-								<ul className='list-disc pl-10 leading-7'>
+								<ul className='pl-10 leading-7'>
 									{item.roles.map((role, index) => (
 										<li key={index}>{role}</li>
 									))}

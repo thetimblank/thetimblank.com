@@ -6,12 +6,12 @@ interface P {
 	content: React.ReactNode;
 }
 
-const Tooltip: React.FC<P> = ({ children, content }) => {
+const Tooltip: React.FC<P> = ({ children, content, ...props }) => {
 	const [open, setOpen] = useState(false);
 	const uuid = Math.random();
 
 	return (
-		<div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+		<div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} {...props}>
 			<AnimatePresence>
 				{open && (
 					<m.div

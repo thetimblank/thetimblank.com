@@ -167,9 +167,7 @@ const Page: React.FC = () => {
 
 				<Section title="Where I've been" data={projects} />
 				<div className='flex w-full items-center flex-col'>
-					<Link
-						href='/clicker'
-						className='label hover:underline hover:text-[var(--link)] transition-colors'>
+					<Link href='/clicker' className='label hover:underline hover:text-link transition-colors'>
 						And maybe a super secret clicker...
 					</Link>
 				</div>
