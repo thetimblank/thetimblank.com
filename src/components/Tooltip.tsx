@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 
-interface P {
+interface P extends React.HTMLAttributes<HTMLDivElement> {
 	children: React.ReactNode;
-	content: React.ReactNode;
+	label: React.ReactNode;
 }
 
-const Tooltip: React.FC<P> = ({ children, content, ...props }) => {
+const Tooltip: React.FC<P> = ({ children, label, ...props }) => {
 	const [open, setOpen] = useState(false);
 	const uuid = Math.random();
 
@@ -19,8 +19,8 @@ const Tooltip: React.FC<P> = ({ children, content, ...props }) => {
 						initial={{ opacity: 0, y: 25 }}
 						animate={{ opacity: 1, y: 0 }}
 						exit={{ opacity: 0 }}
-						className='z-[100] font-bold text-xl rounded-xl pointer-events-none center absolute left-0 bottom-full px-4 py-2 whitespace-nowrap bg-lowlight-800'>
-						{content}
+						className='z-[100] font-bold text-xl rounded-xl pointer-events-none center absolute right-0 bottom-full px-4 py-2 whitespace-nowrap bg-lowlight-800'>
+						{label}
 					</m.div>
 				)}
 				{children}

@@ -7,29 +7,29 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HiMail } from 'react-icons/hi';
 import Section, { Item } from './Section';
+import Footer from './Footer';
 
 const projects: Item[] = [
 	{
-		name: 'Vase Oasis',
-		image: '/media/projects/vaseoasis.png',
-		roles: ['Lead Web & App Developer', 'Engineer'],
-		link: 'https://vaseoasis.com',
+		name: 'Costellar',
+		roles: ['Founder'],
+		image: '/media/projects/costellar.png',
+		link: 'https://costellar.net',
 		dates: {
-			start: new Date(2024, 1),
+			start: new Date(2024, 5),
 			end: 'Present',
 		},
 		featured: true,
 	},
 	{
-		name: 'Costellar',
-		roles: ['Personal Project'],
-		image: '/media/projects/costellar.png',
-		link: 'https://costellar.neotap.net',
+		name: 'Verno & Co',
+		image: '/media/projects/vaseoasis.png',
+		roles: ['Co-Founder'],
+		link: 'https://vernoandco.com',
 		dates: {
-			start: new Date(2024, 5),
-			end: new Date(2024, 6),
+			start: new Date(2024, 11),
+			end: 'Present',
 		},
-		github: 'https://github.com/neo-zip/costellar',
 		featured: true,
 	},
 	{
@@ -39,23 +39,13 @@ const projects: Item[] = [
 		roles: ['Personal Project'],
 	},
 	{
-		name: 'Nodur',
-		image: '/media/projects/nodur.png',
-		link: 'https://nodur.vercel.app',
-		roles: ['Web Developer', 'Full Stack'],
-		dates: {
-			start: new Date(2024, 5, 14),
-			end: 'Present',
-		},
-	},
-	{
 		name: 'Bloodline Interactive',
-		roles: ['Lead Web Developer', 'Engine Developer'],
+		roles: ['Web Developer', 'Engine Developer'],
 		image: '/media/projects/bloodline.png',
 		link: 'https://bloodline.neotap.net',
 		dates: {
 			start: new Date(2023, 7),
-			end: 'Present',
+			end: new Date(2024, 9),
 		},
 	},
 	{
@@ -133,14 +123,14 @@ const Page: React.FC = () => {
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ ease: 'anticipate', duration: 1, delay: 0.1 }}>
-					I come from Germany and have found a passion
+					I was born in Germany and have developed a strong passion
 				</m.div>
 				<m.div
 					className='px-[10%]'
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ ease: 'anticipate', duration: 1, delay: 0.3 }}>
-					for coding and developing small projects.
+					for coding and creating robust small-scale projects.
 				</m.div>
 				<hr className='h-10' />
 				<m.div
@@ -148,14 +138,14 @@ const Page: React.FC = () => {
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ ease: 'anticipate', duration: 1, delay: 0.5 }}>
-					I&apos;d love to expand my experience to much larger projects.
+					I&apos;d love to expand my experience to much larger, more complex initiatives.
 				</m.div>
 				<m.div
 					className='px-[10%]'
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ ease: 'anticipate', duration: 1, delay: 0.7 }}>
-					If you think you could help, let me know at my{' '}
+					If you think you could help, please feel free to reach out via{' '}
 					<Link
 						href='mailto:neo@neotap.net'
 						className='inline-flex items-center gap-1 align-bottom sm:gap-2 fill-link text-link hover:bg-highlight-100 rounded-xl transition-colors px-1'>
@@ -164,27 +154,28 @@ const Page: React.FC = () => {
 					</Link>
 					.
 				</m.div>
-
-				<Section title="Where I've been" data={projects} />
-				<div className='flex w-full items-center flex-col'>
-					<Link href='/clicker' className='label hover:underline hover:text-link transition-colors'>
-						And maybe a super secret clicker...
-					</Link>
-				</div>
 				<Section
+					title="Where I've been"
+					className='mt-[25dvh]'
+					data={projects}
+					windowPane
+					highlightItems
+				/>
+				<Section
+					className='mt-[20dvh]'
 					title='What I work with'
 					data={[
 						{
 							name: 'Langauges',
-							roles: ['Rust', 'Typescript', 'Python'],
+							roles: ['Typescript'],
 						},
 						{
 							name: 'Frameworks',
-							roles: ['React', 'Next.js'],
+							roles: ['Next.js'],
 						},
 						{
 							name: 'Utilities',
-							roles: ['VSC', 'Github', 'Coffee'],
+							roles: ['Visual Studio Code', 'Github'],
 						},
 					]}
 				/>
@@ -192,16 +183,28 @@ const Page: React.FC = () => {
 					title="What I've learned"
 					data={[
 						{
+							name: 'Skills',
+							roles: [
+								'Business Management & Development',
+								'Social Media Marketing',
+								'Full-Stack Applications',
+								'Wordpress',
+								'React',
+								'Fixing Computers',
+							],
+						},
+						{
 							name: 'Languages',
 							roles: ['English', 'German', 'Basic Spanish'],
 						},
 						{
 							name: 'Actual Languages',
-							roles: ['Typescript', 'Python', 'Java', 'C++'],
+							roles: ['Typescript', 'Python', 'Java', 'C++', '"HTML"', '"CSS"'],
 						},
 					]}
 				/>
 			</div>
+			<Footer />
 		</>
 	);
 };
