@@ -62,7 +62,7 @@ const projects: Item[] = [
 
 const Page: React.FC = () => {
 	return (
-		<>
+		<div className='max-w-[100dvw] overflow-hidden'>
 			<div className='min-h-[80vh] center flex-col space-x-4'>
 				<m.div
 					initial={{
@@ -195,17 +195,17 @@ const Page: React.FC = () => {
 						},
 						{
 							name: 'Languages',
-							roles: ['English', 'German', 'Basic Spanish'],
+							roles: ['English', 'German', 'Basic Spanish', '"HTML"', '"CSS"'],
 						},
 						{
 							name: 'Actual Languages',
-							roles: ['Typescript', 'Python', 'Java', 'C++', '"HTML"', '"CSS"'],
+							roles: ['Typescript', 'Python', 'Java', 'C++'],
 						},
 					]}
 				/>
 			</div>
 			<Footer />
-		</>
+		</div>
 	);
 };
 

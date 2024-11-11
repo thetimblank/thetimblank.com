@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { m } from 'framer-motion';
+import { m, HTMLMotionProps } from 'framer-motion';
 
-interface P {
+interface P extends HTMLMotionProps<'div'> {
 	style?: React.CSSProperties;
 	children: React.ReactNode;
 }
