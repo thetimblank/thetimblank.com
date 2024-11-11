@@ -62,7 +62,7 @@ const projects: Item[] = [
 
 const Page: React.FC = () => {
 	return (
-		<div className='max-w-[100dvw] overflow-hidden'>
+		<div className='w-[100vw] max-sm:overflow-hidden'>
 			<div className='min-h-[80vh] center flex-col space-x-4'>
 				<m.div
 					initial={{
@@ -77,7 +77,7 @@ const Page: React.FC = () => {
 						rotateX: 0,
 					}}
 					transition={{ duration: 1.5, type: 'spring', bounce: 0.5 }}>
-					<h1 className='text-[10rem] font-black uppercase mb-10 sm:mb-20'>Hey, I'm Tim</h1>
+					<h1 className='text-[10rem] font-black uppercase mb-10 sm:mb-20'>Hey, I&apos;m Tim</h1>
 				</m.div>
 				<m.div
 					layout
@@ -117,19 +117,19 @@ const Page: React.FC = () => {
 					/>
 				</m.div>
 			</div>
-			<div className='w-full my-20 leading-tight sm:text-4xl'>
+			<div className='w-full my-20 leading-tight text-xl sm:text-4xl'>
 				<m.div
 					className='px-[10%]'
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
-					transition={{ ease: 'anticipate', duration: 1, delay: 0.1 }}>
+					transition={{ type: 'spring', duration: 1, delay: 0.1, bounce: 0 }}>
 					I was born in Germany and have developed a strong passion
 				</m.div>
 				<m.div
 					className='px-[10%]'
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
-					transition={{ ease: 'anticipate', duration: 1, delay: 0.3 }}>
+					transition={{ type: 'spring', duration: 1, delay: 0.3, bounce: 0 }}>
 					for coding and creating robust small-scale projects.
 				</m.div>
 				<hr className='h-10' />
@@ -137,17 +137,17 @@ const Page: React.FC = () => {
 					className='px-[10%]'
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
-					transition={{ ease: 'anticipate', duration: 1, delay: 0.5 }}>
+					transition={{ type: 'spring', duration: 1, delay: 0.5, bounce: 0 }}>
 					I&apos;d love to expand my experience to much larger, more complex initiatives.
 				</m.div>
 				<m.div
 					className='px-[10%]'
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
-					transition={{ ease: 'anticipate', duration: 1, delay: 0.7 }}>
+					transition={{ type: 'spring', duration: 1, delay: 0.7, bounce: 0 }}>
 					If you think you could help, please feel free to reach out via{' '}
 					<Link
-						href='mailto:neo@neotap.net'
+						href='mailto:contact@thetimblank.com'
 						className='inline-flex items-center gap-1 align-bottom sm:gap-2 fill-link text-link hover:bg-highlight-100 rounded-xl transition-colors px-1'>
 						<HiMail className='size-4 sm:size-8 align-middle' />
 						<p>email</p>
@@ -156,13 +156,13 @@ const Page: React.FC = () => {
 				</m.div>
 				<Section
 					title="Where I've been"
-					className='mt-[25dvh]'
+					className='mt-[25vh]'
 					data={projects}
 					windowPane
 					highlightItems
 				/>
 				<Section
-					className='mt-[20dvh]'
+					className='mt-[20vh]'
 					title='What I work with'
 					data={[
 						{

@@ -69,7 +69,7 @@ const Section: React.FC<P> = ({ title, data, windowPane, highlightItems, ...prop
 	const [window, setWindow] = useState(data[0]);
 
 	return (
-		<section className='w-full my-[10dvh] flex flex-col items-center' {...props}>
+		<section className='w-full my-[10vh] flex flex-col items-center' {...props}>
 			<m.div
 				initial={{
 					opacity: 0,
@@ -88,7 +88,7 @@ const Section: React.FC<P> = ({ title, data, windowPane, highlightItems, ...prop
 			<div
 				className={clsx(
 					'flex w-full',
-					windowPane && 'max-xl:flex-col max-sm:gap-1 max-xl:gap-[15dvh]',
+					windowPane && 'max-xl:flex-col max-sm:gap-1 max-xl:gap-[15vh]',
 					!windowPane && 'flex-col gap-5 justify-center items-center'
 				)}>
 				<div
@@ -102,7 +102,7 @@ const Section: React.FC<P> = ({ title, data, windowPane, highlightItems, ...prop
 								<m.div
 									initial={{ opacity: 0, x: -50 }}
 									whileInView={{ opacity: 1, x: 0 }}
-									transition={{ ease: 'anticipate', duration: 1, delay: 0.1 * i }}
+									transition={{ type: 'spring', duration: 1, bounce: 0, delay: 0.1 * i }}
 									className={clsx(
 										'flex flex-col gap-2',
 										highlightItems && 'hover:bg-highlight-100 p-5 rounded-3xl transition-all'

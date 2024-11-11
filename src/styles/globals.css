@@ -157,7 +157,7 @@ img::before {
 
 /* .icon */
 .icon {
-	@apply transition-all rounded-full inline-flex p-2 cursor-pointer backdrop-blur-2xl bg-lowlight-200 dark:bg-highlight-300;
+	@apply transition-all rounded-full inline-flex items-center p-2 cursor-pointer backdrop-blur-2xl bg-lowlight-200 dark:bg-highlight-300;
 }
 
 .icon:hover:not(.disabled),
