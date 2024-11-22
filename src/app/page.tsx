@@ -123,14 +123,14 @@ const Page: React.FC = () => {
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ type: 'spring', duration: 1, delay: 0.1, bounce: 0 }}>
-					I was born in Germany and have developed a strong passion
+					I am a German Software Developer coding small and robust
 				</m.div>
 				<m.div
 					className='px-[10%]'
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ type: 'spring', duration: 1, delay: 0.3, bounce: 0 }}>
-					for coding and creating robust small-scale projects.
+					projects to improve daily life for me and hopefully others.
 				</m.div>
 				<hr className='h-10' />
 				<m.div
@@ -138,7 +138,7 @@ const Page: React.FC = () => {
 					initial={{ opacity: 0, x: -50 }}
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ type: 'spring', duration: 1, delay: 0.5, bounce: 0 }}>
-					I&apos;d love to expand my experience to much larger, more complex initiatives.
+					I&apos;d love to expand my experience to much larger, more complex projects.
 				</m.div>
 				<m.div
 					className='px-[10%]'
