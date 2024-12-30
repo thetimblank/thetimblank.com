@@ -105,7 +105,7 @@ const Section: React.FC<P> = ({ title, data, windowPane, highlightItems, ...prop
 									transition={{ type: 'spring', duration: 1, bounce: 0, delay: 0.1 * i }}
 									className={clsx(
 										'flex flex-col gap-2',
-										highlightItems && 'hover:bg-highlight-100 p-5 rounded-3xl transition-all'
+										highlightItems && 'hover:bg-highlight-100 p-5 rounded-3xl transition-colors'
 									)}
 									key={i}
 									onMouseEnter={() => setWindow(item)}>
@@ -123,7 +123,7 @@ const Section: React.FC<P> = ({ title, data, windowPane, highlightItems, ...prop
 											<Link
 												href={item.link}
 												target='_blank'
-												className='flex items-center gap-2 hover:text-link hover:fill-link transition-all'>
+												className='flex items-center gap-2 hover:text-link hover:fill-link transition-colors'>
 												<h3 className='text-4xl font-black font-title'>{item.name}</h3>
 												<HiExternalLink className='size-10' />
 											</Link>
@@ -134,14 +134,14 @@ const Section: React.FC<P> = ({ title, data, windowPane, highlightItems, ...prop
 											<Tooltip
 												label={<ParsedDates start={item.dates.start} end={item.dates.end} />}>
 												<div className={`${item.link ? 'hover:text-blue-500' : ''}`}>
-													<HiClock className='hover:fill-link transition-all size-10 cursor-pointer' />
+													<HiClock className='hover:fill-link transition-colors size-10 cursor-pointer' />
 												</div>
 											</Tooltip>
 										)}
 										{item.github && (
 											<Tooltip label='Github Repository' className='flex'>
 												<Link href={item.github} target='_blank' className='inline-flex'>
-													<FaGithub className='hover:fill-link transition-all size-[35]' />
+													<FaGithub className='hover:fill-link transition-colors size-[35]' />
 												</Link>
 											</Tooltip>
 										)}

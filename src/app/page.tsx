@@ -19,7 +19,16 @@ const projects: Item[] = [
 			start: new Date(2024, 5),
 			end: 'Present',
 		},
-		featured: true,
+	},
+	{
+		name: 'Eastern European United',
+		image: '/media/projects/eeu.png',
+		roles: ['Event Coordinator', 'Web Developer'],
+		link: 'https://eeunited-org.vercel.app',
+		dates: {
+			start: new Date(2024, 8),
+			end: 'Present',
+		},
 	},
 	{
 		name: 'Verno & Co',
@@ -30,7 +39,6 @@ const projects: Item[] = [
 			start: new Date(2024, 11),
 			end: 'Present',
 		},
-		featured: true,
 	},
 	{
 		name: 'Idea Cooker',
@@ -99,9 +107,10 @@ const Page: React.FC = () => {
 						slides={projects
 							.filter((i) => !!i.image)
 							.map((slide, i) => (
-								<div
+								<Link
+									href={slide.link ?? slide.github ?? '/'}
 									key={i}
-									className='rounded-xl sm:rounded-3xl overflow-hidden bg-highlight-100 hover:scale-105 transition-transform cursor-pointer'>
+									className='flex flex-col rounded-xl sm:rounded-3xl overflow-hidden bg-highlight-100 hover:brightness-110 hover:scale-105 transition-transform cursor-pointer'>
 									<Image
 										src={slide.image ?? ''}
 										alt=''
@@ -111,8 +120,10 @@ const Page: React.FC = () => {
 										draggable={false}
 										className='w-[500] h-auto size-full object-cover select-none'
 									/>
-									<p className='p-5'>{slide.name}</p>
-								</div>
+									<p className='p-2 text-center font-title font-bold text-xl transition-colors'>
+										{slide.name}
+									</p>
+								</Link>
 							))}
 					/>
 				</m.div>
