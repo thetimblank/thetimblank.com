@@ -1,201 +1,315 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --background-image-radial-gradient: radial-gradient(
+        50% 50% at 50% 50%,
+        #0002 50%,
+        #111112 100%
+    );
+
+    --animate-button-click: button-click 0.2s ease;
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
+    --animate-bg-gradient: bg-gradient 10s ease infinite;
+
+    --font-title: var(--font-title), system-ui, -apple-system,
+        BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+    --font-body: var(--font-body), system-ui, -apple-system, BlinkMacSystemFont,
+        Segoe UI, Roboto, sans-serif;
+    --font-accent: var(--font-accent), Georgia, 'Times New Roman', Times, serif;
+
+    --color-link: #24a3f2;
+    --color-focus: #539bf5;
+    --color-accent: #99ccff;
+    --color-accent-dark: #82add9;
+
+    --color-light-100: #b4b4b4;
+    --color-light-200: #b8b8b8;
+    --color-light-300: #dadada;
+    --color-light-400: #d6d6d6;
+    --color-light-500: #e9e9e9;
+    --color-light-600: #ececec;
+    --color-light-700: #f7f7f7;
+    --color-light-800: #fafafa;
+    --color-light-900: #ffffff;
+
+    --color-dark-100: #414045;
+    --color-dark-200: #3f3f42;
+    --color-dark-300: #323234;
+    --color-dark-400: #2e2e2f;
+    --color-dark-500: #262627;
+    --color-dark-600: #202021;
+    --color-dark-700: #1a1a1b;
+    --color-dark-800: #0d0d0d;
+    --color-dark-900: #000000;
+
+    --color-highlight-100: #ffffff11;
+    --color-highlight-200: #ffffff22;
+    --color-highlight-300: #ffffff33;
+    --color-highlight-400: #ffffff44;
+    --color-highlight-500: #ffffff55;
+    --color-highlight-600: #ffffff66;
+    --color-highlight-700: #ffffff77;
+    --color-highlight-800: #ffffff88;
+    --color-highlight-900: #ffffff99;
+
+    --color-lowlight-100: #00000008;
+    --color-lowlight-200: #00000015;
+    --color-lowlight-300: #00000020;
+    --color-lowlight-400: #00000025;
+    --color-lowlight-500: #00000030;
+    --color-lowlight-600: #00000035;
+    --color-lowlight-700: #00000040;
+    --color-lowlight-800: #00000050;
+    --color-lowlight-900: #00000060;
+
+    --color-shadow: rgba(50, 50, 93, 0.1) 0px 13px 27px -5px,
+        rgba(0, 0, 0, 0.1) 0px 8px 16px -8px;
+    --color-disabled: #ffffff0d;
+
+    @keyframes button-click {
+        0%,
+        100% {
+            scale: 1;
+        }
+        50% {
+            scale: 0.95;
+        }
+    }
+    @keyframes accordion-down {
+        from {
+            height: 0;
+        }
+        to {
+            height: var(--radix-accordion-content-height);
+        }
+    }
+    @keyframes accordion-up {
+        from {
+            height: var(--radix-accordion-content-height);
+        }
+        to {
+            height: 0;
+        }
+    }
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+        @apply relative m-0 p-0 box-border;
+    }
+
+    a {
+        @apply inline-flex text-inherit no-underline;
+    }
+
+    hr {
+        @apply border-none;
+    }
+
+    code {
+        @apply font-mono;
+    }
+
+    button {
+        @apply bg-transparent font-body text-inherit;
+    }
+
+    ::-webkit-scrollbar {
+        width: 20px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply rounded-2xl bg-lowlight-500 dark:bg-highlight-400 border-[5px] border-solid border-transparent bg-clip-padding cursor-pointer;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-lowlight-600 dark:bg-highlight-500;
+    }
+
+    /* html and body */
+    html,
+    body {
+        @apply size-full scroll-smooth;
+    }
+
+    body {
+        @apply text-dark-700 fill-dark-700 dark:text-light-500 dark:fill-light-500 bg-light-900 dark:bg-dark-500 overflow-x-hidden overflow-y-auto;
+    }
+
+    body.scroll-locked {
+        @apply overflow-y-hidden sm:w-[calc(100%-20px)];
+    }
+
+    /* reset */
+
+    input[type='number']::-webkit-inner-spin-button {
+        appearance: none;
+    }
+
+    /* default img alt */
+    /* img::before {
+		content: '';
+		@apply absolute top-0 left-0 h-[calc(100%-2px)] w-full bg-dark-100 border-2 border-dashed border-highlight-100;
+	} */
+}
 
 :root {
-	color-scheme: light dark;
-	font-size: 16px;
-	line-height: 1;
-	font-weight: 400;
+    color-scheme: light dark;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 400;
 
-	box-sizing: border-box;
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-	scroll-padding: 0;
+    scroll-padding: 0;
 }
 
 /* Custom Scrollbar Styling */
 
-/* ::-webkit-scrollbar */
-::-webkit-scrollbar {
-	width: 20px;
-}
-
-/* ::-webkit-scrollbar-track */
-::-webkit-scrollbar-track {
-	@apply bg-transparent;
-}
-
-/* ::-webkit-scrollbar-thumb */
-::-webkit-scrollbar-thumb {
-	@apply rounded-2xl bg-lowlight-500 dark:bg-highlight-100 border-[5px] border-solid border-transparent bg-clip-padding cursor-pointer;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	@apply bg-lowlight-600 dark:bg-highlight-300;
-}
-
-/* General Styles */
-
-/* * (global) */
-*:not(number-flow *) {
-	@apply relative m-0 p-0 box-border;
-}
-
-*:focus {
-	@apply border-none outline-none;
-}
-
-/* html and body */
-html,
-body {
-	@apply size-full scroll-smooth;
-}
-
-body {
-	@apply text-dark-700 fill-dark-700 dark:text-light-500 dark:fill-light-500 bg-light-500 dark:bg-dark-500 overflow-x-hidden overflow-y-auto;
-}
-
-body.scroll-locked {
-	width: calc(100% - 20px);
-	@apply overflow-y-hidden;
-}
-
-/* reset */
-
-a {
-	@apply inline-flex text-inherit no-underline;
-}
-
-hr {
-	@apply border-none;
-}
-
-code {
-	@apply font-mono;
-}
-
-button {
-	@apply bg-transparent font-body text-inherit;
-}
-
-svg {
-	@apply fill-inherit;
-}
-
-input[type='number']::-webkit-inner-spin-button {
-	appearance: none;
-}
-
-/* default img alt */
-img::before {
-	content: '';
-	@apply absolute top-0 left-0 h-[calc(100%-2px)] w-full bg-dark-100 border-2 border-dashed border-highlight-100;
-}
-
 /* .center */
 .center {
-	@apply flex items-center justify-center;
+    @apply flex items-center justify-center;
 }
 
 /* .hr */
 .hr {
-	@apply border-b border-solid border-lowlight-300 dark:border-highlight-300;
+    @apply border-b border-solid border-lowlight-300 dark:border-highlight-100;
 }
 
 /* .input */
 .input {
-	@apply px-4 py-3 w-full resize-none bg-transparent border-2 border-lowlight-300 dark:border-highlight-300 border-solid  rounded-xl transition-all text-inherit
-	 text-xl;
+    @apply px-4 py-2 w-full resize-none bg-transparent border-2 border-lowlight-500 dark:border-highlight-300 border-solid rounded-xl text-inherit text-xl transition-all outline-none;
 }
 
 .input::placeholder {
-	@apply text-light-100;
+    /* @apply text-lowlight-600 dark:text-highlight-600; */
+    @apply dark:text-highlight-600;
 }
 
-/* .input:invalid {
-	@apply border-red-400;
+.input:focus {
+    @apply border-accent;
+}
+
+.input:disabled {
+    @apply opacity-50 cursor-not-allowed;
+}
+
+/* input:is(:-webkit-autofill, :autofill) {
+	@apply !shadow-[0_0_0px_1000px_var(--color-focus)_inset];
 } */
+
+/* .slider */
+.slider {
+    @apply bg-dark-100 appearance-none w-full max-w-full h-2 cursor-pointer rounded-lg;
+}
+
+.slider::-webkit-slider-thumb {
+    @apply bg-accent hover:bg-accent-dark size-4 rounded-sm appearance-none transition-colors;
+}
 
 /* .button */
 .button {
-	@apply relative flex items-center justify-center gap-2 text-light-900 fill-light-900 dark:text-dark-800 dark:fill-dark-800 font-title bg-dark-600 dark:bg-light-500 px-5 py-3 font-bold cursor-pointer rounded-xl transition-all;
+    @apply flex items-center justify-center gap-2 text-light-900 fill-light-900 dark:text-dark-800 dark:fill-dark-800 font-title bg-dark-600 dark:bg-light-500 px-5 py-3 font-bold cursor-pointer rounded-xl transition-all outline-2 outline-transparent outline-offset-2;
 }
-.button:hover,
+.button:not(.loading):not(:disabled):hover {
+    @apply bg-dark-400 dark:bg-light-700 outline-accent;
+}
+
 .button:focus-visible {
-	@apply bg-dark-400 dark:bg-light-200;
+    @apply outline-focus;
 }
 
 .button:disabled {
-	@apply opacity-50 bg-dark-600 dark:bg-light-100 cursor-not-allowed;
+    @apply opacity-50 bg-dark-600 dark:bg-light-100 cursor-not-allowed;
 }
 
 .button:not(:disabled):active {
-	@apply animate-button-click;
+    @apply animate-button-click;
 }
 
 /* .link */
 .link {
-	@apply cursor-pointer inline-flex gap-1 items-center text-link;
+    @apply cursor-pointer inline-flex gap-1.5 items-center text-link rounded-[1px];
 }
 
 .link svg {
-	@apply fill-link;
+    @apply fill-link;
 }
 
 .link:hover,
 .link:focus-visible {
-	@apply underline;
+    @apply underline outline-0;
 }
 
 .link:disabled {
-	@apply opacity-50  cursor-not-allowed !no-underline;
+    @apply opacity-50  cursor-not-allowed no-underline!;
 }
 
 /* .icon */
 .icon {
-	@apply transition-all rounded-full inline-flex items-center p-2 cursor-pointer backdrop-blur-2xl bg-lowlight-200 dark:bg-highlight-300;
+    @apply transition-all rounded-xl inline-flex p-2 cursor-pointer backdrop-blur-2xl bg-lowlight-200 dark:bg-highlight-200;
 }
 
 .icon:hover:not(.disabled),
 .icon:focus-visible:not(.disabled) {
-	@apply bg-lowlight-300 dark:bg-highlight-400;
+    @apply bg-lowlight-300 dark:bg-highlight-300;
+}
+
+.icon:disabled {
+    @apply opacity-50 cursor-not-allowed;
 }
 
 /* .disabled */
-.disabled {
-	@apply opacity-50 !important;
-}
+/* .disabled {
+	@apply !opacity-50;
+} */
 
 .disabled {
-	cursor: not-allowed !important;
+    cursor: not-allowed !important;
 }
 
 .disabled:active {
-	pointer-events: none !important;
+    pointer-events: none !important;
 }
 
 /* .focusable */
 
 .focusable,
-.button,
-.input,
-.icon {
-	@apply outline-4 outline-transparent outline-offset-2;
+.icon,
+.slider {
+    @apply outline-2 outline-transparent outline-offset-2;
 }
 
 .focusable:focus-visible,
-.button:focus-visible,
-.input:focus-visible,
-.icon:focus-visible {
-	@apply outline-focus;
+.icon:focus-visible,
+.slider:focus-visible {
+    @apply outline-focus;
 }
 
-@layer base {
-	:root {
-		--radius: 0.5rem;
-	}
+@keyframes bg_gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
