@@ -441,7 +441,7 @@ const Waves: React.FC<WavesProps> = ({
                 backgroundColor,
                 ...style,
             }}
-            className={`absolute top-0 left-0 w-full h-full overflow-hidden ${className}`}
+            className={`blur-[5px] absolute top-0 left-0 w-full h-full overflow-hidden ${className}`}
         >
             <div
                 className='absolute top-0 left-0'

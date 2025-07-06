@@ -67,7 +67,7 @@ const Page: React.FC = () => {
                 <div className='absolute size-[105%] bg-gradient-to-t from-light-300 dark:from-dark-100'>
                     {prefersMotion ? (
                         <Waves
-                            lineColor='#99ccff'
+                            lineColor='#24a3f2'
                             backgroundColor='#0000'
                             waveSpeedX={0.02}
                             waveSpeedY={0.01}
