@@ -109,7 +109,7 @@ const Page: React.FC = () => {
 					<h1
 						className={clsx(
 							'text-center text-5xl md:text-9xl font-thin font-accent uppercase my-10 sm:my-20',
-							prefersMotion ? 'text-dark-100 dark:text-light-800' : 'text-white'
+							prefersMotion ? 'text-dark-100 dark:text-light-800' : 'text-white',
 						)}>
 						Hi, I&apos;m Tim
 					</h1>
@@ -133,7 +133,7 @@ const Page: React.FC = () => {
 						openInNewClassName='size-4 sm:size-8'>
 						UCF
 					</Anchor>{' '}
-					cs student coding small and robust
+					computer science student coding small and
 				</m.div>
 				<m.div
 					className='px-[10%]'
@@ -145,7 +145,7 @@ const Page: React.FC = () => {
 						delay: 0.3,
 						bounce: 0,
 					}}>
-					projects to improve daily life for me and hopefully others!
+					robust projects to improve daily life for me and hopefully others!
 				</m.div>
 				<hr className='h-10' />
 				<m.div
@@ -194,8 +194,8 @@ const Page: React.FC = () => {
 							roles: ['Typescript', 'Python'],
 						},
 						{
-							name: 'Frameworks',
-							roles: ['Next.js'],
+							name: 'Technologies',
+							roles: ['Next.js', 'React Native'],
 						},
 						{
 							name: 'Utilities',
@@ -220,9 +220,11 @@ const Page: React.FC = () => {
 								'Business Management & Development',
 								'Full-Stack Applications',
 								'React',
-								'Fixing Computers',
-								'Basic Social Media Marketing',
-								'Basic Wordpress',
+								'Mobile Apps',
+								'Wordpress',
+								'Wix',
+								'IT',
+								// 'Basic Social Media Marketing',
 							],
 						},
 						{
@@ -231,7 +233,7 @@ const Page: React.FC = () => {
 						},
 						{
 							name: 'Actual Languages',
-							roles: ['Typescript', 'Python', 'Basic Java', 'Basic C++'],
+							roles: ['Typescript', 'Python', 'Basic Java', 'Basic C++', 'Basic C'],
 						},
 					]}
 				/>
