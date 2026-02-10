@@ -40,7 +40,7 @@ const Page: React.FC = () => {
 	const { prefersMotion, theme } = useContext(CostellarContext);
 
 	return (
-		<div className='w-screen max-sm:overflow-hidden'>
+		<main className='w-screen max-sm:overflow-hidden'>
 			<Nav />
 			<div className='min-h-[40vh] pb-[10vh] overflow-hidden'>
 				<div className='absolute size-[105%] bg-linear-to-t to-slate-400 from-slate-100 dark:to-transparent dark:from-slate-800'>
@@ -81,10 +81,10 @@ const Page: React.FC = () => {
 					}}
 					transition={{ duration: 0.75, type: 'spring', bounce: 0 }}
 					style={{ transformPerspective: 1200 }}
-					className='center my-[5vh] md:mt-[25vh] md:mb-[20vh]'>
+					className='center mb-[5vh] mt-[10vh] md:mt-[25vh] md:mb-[20vh]'>
 					<h1
 						className={clsx(
-							'text-center text-5xl md:text-9xl font-thin font-accent text-dark-100 dark:text-light-800',
+							'text-center text-5xl md:text-7xl lg:text-9xl font-thin font-accent text-dark-100 dark:text-light-800',
 						)}>
 						thetimblank
 					</h1>
@@ -215,7 +215,7 @@ const Page: React.FC = () => {
 				/>
 			</div>
 			<Footer />
-		</div>
+		</main>
 	);
 };
 

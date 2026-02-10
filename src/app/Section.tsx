@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { m } from 'motion/react';
 import Link from 'next/link';
 import Tooltip from '@/components/ui/Tooltip';
@@ -7,6 +7,7 @@ import { FaGithub } from 'react-icons/fa';
 import Tilt from '@/components/ui/Tilt';
 import Image from 'next/image';
 import { clsx } from 'clsx';
+import { CostellarContext } from '@/providers/Costellar';
 
 type Dates = {
 	start?: Date;
@@ -72,6 +73,7 @@ const ParsedDates = ({ start, end }: Dates) => {
 
 const Section: React.FC<P> = ({ title, subtitle, data, windowPane, highlightItems, ...props }) => {
 	const [window, setWindow] = useState(data[0]);
+	const { prefersMotion } = useContext(CostellarContext);
 
 	return (
 		<section className='w-full my-[10vh] flex flex-col items-center' {...props}>
@@ -87,7 +89,7 @@ const Section: React.FC<P> = ({ title, subtitle, data, windowPane, highlightItem
 					y: 0,
 					rotateX: 0,
 				}}
-				transition={{ duration: 1.5, type: 'spring', bounce: 0 }}>
+				transition={{ duration: prefersMotion ? 1.5 : 0, type: 'spring', bounce: 0 }}>
 				<p
 					className={clsx(
 						'text-5xl sm:text-7xl font-thin italic font-accent mb-3 text-center px-5',
