@@ -5,19 +5,18 @@ import { m } from 'motion/react';
 import { HiMail } from 'react-icons/hi';
 import Section, { Item } from './Section';
 import Footer from './Footer';
-import Carousel from '@/components/ui/Carousel';
-import Waves from './Waves';
 import Anchor from '@/components/ui/Anchor';
-import Image from 'next/image';
 import clsx from 'clsx';
 import { CostellarContext } from '@/providers/Costellar';
 import Nav from './Nav';
+import FloatingLines from './FloatingLines';
+import Waves from './Waves';
 
 const projects: Item[] = [
 	{
 		name: 'Costellar',
 		roles: ['Founder', 'Freelancing', 'Web design company'],
-		image: '/media/projects/costellar.png',
+		image: '/media/projects/costellar2.png',
 		github: 'https://github.com/costellar-net/website',
 		link: 'https://costellar.net',
 		dates: {
@@ -32,61 +31,37 @@ const projects: Item[] = [
 		link: 'https://www.dentistofnaples.com/',
 		dates: {
 			start: new Date(2024, 7),
-			end: new Date(2025, 5),
+			end: new Date(2026, 0),
 		},
 	},
-	// {
-	// 	name: 'Eastern European United',
-	// 	image: '/media/projects/eeu.png',
-	// 	roles: ['Event Coordinator', 'Web Developer', 'High School Club'],
-	// 	link: 'https://eeunited-org.vercel.app',
-	// 	dates: {
-	// 		start: new Date(2024, 7),
-	// 		end: new Date(2025, 4),
-	// 	},
-	// },
-	// {
-	//     name: "How's your day?",
-	//     image: '/media/projects/howwasyourday.png',
-	//     roles: ['Personal Project'],
-	//     link: 'https://howsyourday.neotap.net',
-	//     github: 'https://github.com/neo-zip/howwasmyday',
-	//     dates: {
-	//         start: new Date(2023, 7),
-	//     },
-	// },
 ];
 
 const Page: React.FC = () => {
-	const { prefersMotion } = useContext(CostellarContext);
+	const { prefersMotion, theme } = useContext(CostellarContext);
 
 	return (
 		<div className='w-screen max-sm:overflow-hidden'>
 			<Nav />
-			<div className='min-h-[40vh] center flex-col space-x-4 overflow-hidden'>
-				<div className='absolute size-[105%] bg-linear-to-t from-light-300 dark:from-dark-100'>
-					{prefersMotion ? (
-						<Waves
-							lineColor='#24a3f2'
-							backgroundColor='#0000'
-							waveSpeedX={0.02}
-							waveSpeedY={0.01}
-							waveAmpX={40}
-							waveAmpY={20}
-							friction={0.9}
-							tension={0.01}
-							maxCursorMove={120}
-							xGap={12}
-							yGap={36}
+			<div className='min-h-[40vh] pb-[10vh] overflow-hidden'>
+				<div className='absolute size-[105%] bg-linear-to-t to-slate-400 from-slate-100 dark:to-transparent dark:from-slate-800'>
+					{theme === 'dark' ? (
+						<FloatingLines
+							enabledWaves={['top', 'middle', 'bottom']}
+							// Array - specify line count per wave; Number - same count for all waves
+							lineCount={5}
+							// Array - specify line distance per wave; Number - same distance for all waves
+							lineDistance={5}
+							bendRadius={5}
+							bendStrength={-0.5}
+							interactive={prefersMotion}
+							parallax={true}
+							animationSpeed={prefersMotion ? 1 : 0}
 						/>
 					) : (
-						<Image
-							src='/media/moon.png'
-							quality={90}
-							fill
-							alt=''
-							sizes='100vw'
-							className='object-cover size-full -scale-y-100'
+						<Waves
+							maxCursorMove={prefersMotion ? 100 : 0}
+							waveSpeedX={prefersMotion ? 0.05 : 0}
+							waveSpeedY={prefersMotion ? 0.05 : 0}
 						/>
 					)}
 				</div>
@@ -104,83 +79,85 @@ const Page: React.FC = () => {
 						scale: 1.25,
 						rotateX: 10,
 					}}
-					transition={{ duration: 1.5, type: 'spring', bounce: 0 }}
-					style={{ transformPerspective: 1200 }}>
+					transition={{ duration: 0.75, type: 'spring', bounce: 0 }}
+					style={{ transformPerspective: 1200 }}
+					className='center my-[5vh] md:mt-[25vh] md:mb-[20vh]'>
 					<h1
 						className={clsx(
-							'text-center text-5xl md:text-9xl font-thin font-accent uppercase my-10 sm:my-20',
-							prefersMotion ? 'text-dark-100 dark:text-light-800' : 'text-white',
+							'text-center text-5xl md:text-9xl font-thin font-accent text-dark-100 dark:text-light-800',
 						)}>
-						Hi, I&apos;m Tim
+						thetimblank
 					</h1>
 				</m.div>
-			</div>
-			<div className='w-full my-20 leading-tight text-xl sm:text-4xl'>
-				<m.div
-					className='px-[10%]'
-					initial={{ opacity: 0, x: -50 }}
-					whileInView={{ opacity: 1, x: 0 }}
-					transition={{
-						type: 'spring',
-						duration: 1,
-						delay: 0.1,
-						bounce: 0,
-					}}>
-					I am a german{' '}
-					<Anchor
-						title='University of Central Florida'
-						href='https://www.ucf.edu/'
-						openInNewClassName='size-4 sm:size-8'>
-						UCF
-					</Anchor>{' '}
-					computer science student coding small and
-				</m.div>
-				<m.div
-					className='px-[10%]'
-					initial={{ opacity: 0, x: -50 }}
-					whileInView={{ opacity: 1, x: 0 }}
-					transition={{
-						type: 'spring',
-						duration: 1,
-						delay: 0.3,
-						bounce: 0,
-					}}>
-					robust projects to improve daily life for me and hopefully others!
-				</m.div>
-				<hr className='h-10' />
-				<m.div
-					className='px-[10%]'
-					initial={{ opacity: 0, x: -50 }}
-					whileInView={{ opacity: 1, x: 0 }}
-					transition={{
-						type: 'spring',
-						duration: 1,
-						delay: 0.5,
-						bounce: 0,
-					}}>
-					I&apos;d love to expand my experience to much larger, more complex projects.
-				</m.div>
-				<m.div
-					className='px-[10%]'
-					initial={{ opacity: 0, x: -50 }}
-					whileInView={{ opacity: 1, x: 0 }}
-					transition={{
-						type: 'spring',
-						duration: 1,
-						delay: 0.7,
-						bounce: 0,
-					}}>
-					If you think you could help, reach out at{' '}
-					<Anchor href='mailto:contact@thetimblank.com'>
-						<HiMail className='size-4 sm:size-8' />
-						<p className='self-baseline'>contact@thetimblank.com</p>
-					</Anchor>
-					.
-				</m.div>
 
+				<div className='px-[10%] leading-tight text-xl sm:text-4xl'>
+					<m.div
+						className='drop-shadow-sm'
+						initial={{ opacity: 0, x: -50 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						transition={{
+							type: 'spring',
+							duration: 0.75,
+							delay: 0.1,
+							bounce: 0,
+						}}>
+						I am a german{' '}
+						<Anchor
+							title='University of Central Florida'
+							href='https://www.ucf.edu/'
+							openInNewClassName='size-4 sm:size-8'>
+							UCF
+						</Anchor>{' '}
+						computer science student coding small and
+					</m.div>
+					<m.div
+						className='drop-shadow-sm'
+						initial={{ opacity: 0, x: -50 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						transition={{
+							type: 'spring',
+							duration: 0.75,
+							delay: 0.2,
+							bounce: 0,
+						}}>
+						robust projects to improve daily life for me and hopefully others!
+					</m.div>
+					<hr className='h-10' />
+					<m.div
+						className='drop-shadow-sm'
+						initial={{ opacity: 0, x: -50 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						transition={{
+							type: 'spring',
+							duration: 0.75,
+							delay: 0.4,
+							bounce: 0,
+						}}>
+						I&apos;d love to expand my experience to much larger, more complex projects.
+					</m.div>
+					<m.div
+						className='drop-shadow-sm'
+						initial={{ opacity: 0, x: -50 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						transition={{
+							type: 'spring',
+							duration: 0.75,
+							delay: 0.5,
+							bounce: 0,
+						}}>
+						If you think you could help, reach out at{' '}
+						<Anchor href='mailto:contact@thetimblank.com'>
+							<HiMail className='size-4 sm:size-8' />
+							<p className='self-baseline'>contact@thetimblank.com</p>
+						</Anchor>
+						.
+					</m.div>
+				</div>
+			</div>
+			<div className='w-full mb-20 leading-tight text-xl sm:text-4xl'>
 				<Section
 					title="Where I've been"
-					className='mt-[10vh] pt-[10vh] bg-linear-to-b from-light-800 dark:from-dark-600'
+					className='pt-[10vh] bg-linear-to-b from-light-800 dark:from-dark-600'
 					data={projects}
 					windowPane
 					highlightItems
@@ -191,7 +168,7 @@ const Page: React.FC = () => {
 					data={[
 						{
 							name: 'Langauges',
-							roles: ['Typescript', 'Python'],
+							roles: ['Typescript', 'Python', 'C++'],
 						},
 						{
 							name: 'Technologies',
@@ -199,7 +176,7 @@ const Page: React.FC = () => {
 						},
 						{
 							name: 'Utilities',
-							roles: ['Visual Studio Code', 'Github'],
+							roles: ['Visual Studio Code', 'Github', 'Notion'],
 						},
 					]}
 				/>
@@ -219,11 +196,10 @@ const Page: React.FC = () => {
 							roles: [
 								'Business Management & Development',
 								'Full-Stack Applications',
-								'React',
-								'Mobile Apps',
-								'Wordpress',
-								'Wix',
-								'IT',
+								'React, Next.js, tailwind, firebase, shadcn',
+								'Mobile Apps (react native, nativewind)',
+								'Wordpress, Wix, etc.',
+								'IT - all around, administrative, support, networking, etc.',
 								// 'Basic Social Media Marketing',
 							],
 						},
@@ -233,7 +209,7 @@ const Page: React.FC = () => {
 						},
 						{
 							name: 'Actual Languages',
-							roles: ['Typescript', 'Python', 'Basic Java', 'Basic C++', 'Basic C'],
+							roles: ['Typescript', 'Python', 'C++', 'Basic C', 'Basic Java'],
 						},
 					]}
 				/>

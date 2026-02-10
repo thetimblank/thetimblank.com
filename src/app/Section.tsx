@@ -48,7 +48,7 @@ const ParsedDates = ({ start, end }: Dates) => {
 				? 'Present'
 				: `${end.toLocaleString('default', {
 						month: 'long',
-				  })} ${end.getFullYear()}`;
+					})} ${end.getFullYear()}`;
 	}
 
 	if (start && !end) {
@@ -91,7 +91,7 @@ const Section: React.FC<P> = ({ title, subtitle, data, windowPane, highlightItem
 				<p
 					className={clsx(
 						'text-5xl sm:text-7xl font-thin italic font-accent mb-3 text-center px-5',
-						!subtitle && 'mb-10 sm:mb-20'
+						!subtitle && 'mb-10 sm:mb-20',
 					)}>
 					{title}
 				</p>
@@ -101,13 +101,13 @@ const Section: React.FC<P> = ({ title, subtitle, data, windowPane, highlightItem
 				className={clsx(
 					'flex w-full',
 					windowPane && 'max-xl:flex-col max-sm:gap-1 max-xl:gap-[15vh]',
-					!windowPane && 'flex-col gap-5 justify-center items-center'
+					!windowPane && 'flex-col gap-5 justify-center items-center',
 				)}>
 				<div
 					className={
 						windowPane
 							? 'w-full xl:w-1/2 p-5 flex flex-col items-center xl:items-end'
-							: 'w-[95%] sm:w-3/4 xl:w-1/2 max-w-[800px] flex flex-col'
+							: 'w-[95%] sm:w-3/4 xl:w-1/2 max-w-200 flex flex-col'
 					}>
 					<div className='flex flex-col gap-20'>
 						{data.map((item, i) => {
@@ -124,7 +124,7 @@ const Section: React.FC<P> = ({ title, subtitle, data, windowPane, highlightItem
 									className={clsx(
 										'flex flex-col gap-2',
 										highlightItems &&
-											'hover:bg-lowlight-200 dark:hover:bg-highlight-100 p-5 rounded-3xl transition-colors'
+											'hover:bg-lowlight-200 dark:hover:bg-highlight-100 p-5 rounded-3xl transition-colors',
 									)}
 									key={i}
 									onMouseEnter={() => setWindow(item)}>
@@ -188,7 +188,18 @@ const Section: React.FC<P> = ({ title, subtitle, data, windowPane, highlightItem
 									{item.roles && item.roles.length > 0 && (
 										<ul className='text-xl text-dark-100 dark:text-highlight-900 font-bold uppercase'>
 											{item.roles.map((role, index) => (
-												<li key={index}>{role}</li>
+												<m.li
+													initial={{ x: -20, opacity: 0 }}
+													whileInView={{ x: 0, opacity: 1 }}
+													transition={{
+														type: 'spring',
+														duration: 1,
+														bounce: 0,
+														delay: index * 0.05,
+													}}
+													key={index}>
+													{role}
+												</m.li>
 											))}
 										</ul>
 									)}
@@ -199,7 +210,7 @@ const Section: React.FC<P> = ({ title, subtitle, data, windowPane, highlightItem
 					</div>
 				</div>
 				{windowPane && window.image && (
-					<div className='w-full xl:w-1/2 max-w-[1000px] p-10 max-sm:grid max-sm:place-items-center'>
+					<div className='w-full xl:w-1/2 max-w-250 p-10 max-sm:grid max-sm:place-items-center'>
 						<Link
 							href={window.link ?? '#'}
 							title={'View ' + window.name}
